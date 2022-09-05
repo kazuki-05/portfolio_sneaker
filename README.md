@@ -1,44 +1,21 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# <sneakerbook>
+# スニーカー図鑑
 
 ## サイト概要
 ### サイトテーマ
 <自分が好きなブランドのスニーカーをタイトル、そのタイトルの説明、写真と共に投稿できるコミュニティーサイト>
 
 ### テーマを選んだ理由
-<元々スニーカーが好きで、インスタなど自分が好きなものを投稿できる場所はあったが、スニーカーのみを投稿でき、スニーカーが好きな人同士のコミュニティー場所があればと考えました。>
+元々スニーカーが好きで、インスタなど自分が好きなものを投稿できる場所はあったが、スニーカーのみを投稿でき、スニーカーが好きな人同士のコミュニティー場所があればと考えました。
+このアプリケーションを作成することによってスニーカーに興味を持ち始めた10代から30代の人たちがよりスニーカーへの熱を高め、それによるスニーカー文化の向上を狙いたい。
 
 ### ターゲットユーザ
-<スニーカーが好きな人>
+スニーカーに興味が出てきた10代から30代
 
 ### 主な利用シーン
-<レアスニーカーの検索、投稿ができる>
+購入したスニーカーを共有することができ、検索機能でわからないスニーカーを検索する。
+画像一覧から興味があるものもを見つける。
 
 ## 設計書
-<...>
 
 ## 開発環境
 - OS：Linux(CentOS)
