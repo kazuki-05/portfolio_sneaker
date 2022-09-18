@@ -1,0 +1,19 @@
+<% @posts.each do |post| %>
+  <div>
+    <!--image_tagを使いpostにActiveStorageで設定したimageを表示-->
+    <!--post_image.get_imageの部分はPostモデル内に記述したメソッドを呼び出し-->
+    <!--<#%= image_tag post.get_image, size:"300x300" %>-->
+    <p><%= image_tag post.user.get_profile_image(100,100) %></p>
+
+    <p><%= image_tag post.image, size:"300x300" %></p>
+
+    <p>ブランド名: <%=post.brand %></p>
+
+    <%= link_to post_path(post.id) do %>
+      <P>・ <%= post.title %></P>
+    <% end %>
+
+    <p><%= post.body %></p>
+    
+  </div>
+<% end %>
