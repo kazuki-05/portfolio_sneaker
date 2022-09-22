@@ -1,0 +1,7 @@
+<% @post_comments.each do |post_comment| %>
+  <div>
+    <p><%= post_comment.comment %></p>
+    <%= link_to '削除', admin_post_comment_path(post_comment.id), method: :delete %>
+  </div>
+<% end %>
+

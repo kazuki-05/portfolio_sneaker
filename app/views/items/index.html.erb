@@ -1,29 +1,8 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <table class='table'>
-          <thead>
-            <tr>
-              <th>ジャンル検索</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-            <td>
-              <%= form_with url: items_path, method: :get do |f| %>
-              <%= f.select :brand_id, Brand.all.map {|brand|[brand.name, brand.id]}, {}, {} %>
-  
-              <P><%= f.submit '検索' %></P>
-              
-            <% end %>
-            
-              </td>
-            </tr>
-          </tbody>
-        </table>
-<%= render "search/search", q: @q %>
 
-<!--コントローラから渡された@post_images変数内から1つずつ取り出して、post_image変数へ格納-->
+
 <% @posts.each do |post| %>
 
   <div>
@@ -44,15 +23,13 @@
 
     <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
 
-    <%= render 'favorite', post: post %>
+    <%= render 'posts/favorite', post: post %>
     <!--いいね機能の部分テンプレートを作って、非同期-->
 
   </div>
   
 
 <% end %>
-
-  
 
     </div>
   </div>

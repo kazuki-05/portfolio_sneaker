@@ -15,5 +15,7 @@
 
     <p><%= post.body %></p>
     
+    <P><%= link_to '削除', admin_post_path(post.id), method: :delete %></P>
+    
   </div>
 <% end %>

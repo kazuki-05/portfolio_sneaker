@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+   before_action :authenticate_user!
   def new
     # Viweへ渡すためのインスタンス変数に空のModelオプションを生成する
     @post = Post.new
@@ -24,11 +25,13 @@ class PostsController < ApplicationController
     # distinct:trueは重複したデータを除外
     @q = Post.ransack(params[:q])
     @posts = @q.result
+    @Brands = Brand.all
   end
 
   def show
     # レコードを１件取得するだけ。インスタンス変数名は単数形の「@post」
     @post = Post.find(params[:id])
+    # byebug
     @post_comment = PostComment.new
   end
 
@@ -56,7 +59,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :brand, :title, :body)
+    params.require(:post).permit(:image, :brand_id, :title, :body)
   end
 
 end

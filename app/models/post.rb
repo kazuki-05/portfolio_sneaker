@@ -1,17 +1,18 @@
 class Post < ApplicationRecord
   # 画像投稿
   has_one_attached :image
-  
+
   validates :image, presence: true
-  validates :brand, presence: true
+  validates :brand_id, presence: true
   validates :title, presence: true
   validates :body, presence: true
-  
-  
-  
-  
+
+
+
+
   # ユーザーとの１対多の紐付け
   belongs_to :user
+  belongs_to :brand
   has_many :post_comments, dependent: :destroy
   has_many :favorites,dependent: :destroy
   # このメソッドの内容は、画像が設置されていない場合はapp/assets/imagesに格納されてるno_image.jpgの画像を表示
@@ -23,6 +24,11 @@ class Post < ApplicationRecord
     image
   end
   
+  # favoriteメソッド
+  def favorited_by(user)
+    favorite.find_by(user_id: user.id,post_id: id)
+  end
+
 def favorited_by?(user)
   favorites.exists?(user_id: user.id)
 end

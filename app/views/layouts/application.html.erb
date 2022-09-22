@@ -12,60 +12,63 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <header class="shadow-sm mb-5" >
-        <nav class="navbar expand-lg navbar-dark" style="background-color: #ffdab9;">
-
-          <div class="container">
-            <% if admin_signed_in? %>
-              <%= link_to admin_posts_path do %>
-                <%= image_tag "sn.jpeg", size: "200x76" %>
-              <% end %>
-              <ul class="nav justify-content-end">
-                <li class="nav-item btn"><%= link_to "投稿一覧", admin_posts_path, class: 'nav-link text-dark' %></li>
-                <li class="nav-item btn"><%= link_to "会員一覧", admin_users_path, class: 'nav-link text-dark' %></li>
-                <li class="nav-item btn"><%= link_to "ジャンル一覧", root_path, class: 'nav-link text-dark' %></li>
-                <li class="nav-item btn"><%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
-              </ul>
-            <% elsif user_signed_in? %>
-              <%= link_to root_path do %>
-                <%= image_tag "images.jpg", size: "200x76" %>
-              <% end %>
-              <ul class="nav justify-content-end">
-                <li class="nav-item btn"><%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %></li>
-                <li class="nav-item btn"><%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %></li>
-                <li class="nav-item btn"><%= link_to "投稿", new_post_path, class: 'nav-link text-dark' %></li>
-                <li class="nav-item btn"><%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
-              </ul>
-            <% else %>
-              <%= link_to root_path do %>
-                <%= image_tag "images.jpeg", size: "200x76" %>
-              <% end %>
-              <ul class="nav justify-content-end">
-                <li class="nav-item btn"><%= link_to "ゲストログイン", root_path, class: 'nav-link text-dark' %></li>
-                <li class="nav-item btn"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %></li>
-                <li class="nav-item btn"><%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %></li>
-              </ul>
+  <body>
+    <header class="shadow-sm mb-5" >
+      <nav class="navbar expand-lg navbar-dark" style="background-color: #ffdab9;">
+        <div class="container">
+          <% if admin_signed_in? %>
+            <%= link_to admin_posts_path do %>
+              <%= image_tag "sn.jpeg", size: "200x76" %>
             <% end %>
-          </div>
-        </nav>
-      </header>
-      
-        <%= yield %>
-        
-      <footer class="text-dark pt-5 pb-3">
-        <div class='container'>
-    	    <div class='row'>
-      	    <div class='mx-auto'>
-                <a href="#" class="mx-1 text-dark"><i class="fab fa-twitter fa-lg"></i></a>
-                <a href="#" class="mx-5 text-dark"><i class="fab fa-instagram fa-lg"></i></a>
-                <a href="#" class="mx-1 text-dark"><i class="fab fa-facebook-square"></i></a>
-                <a href="#" class="mx-5 text-dark"><i class="far fa-envelope fa-lg"></i></a>
-                <p class="text-center">スニーカー</p>
-              </div>
-           </div>
+            <ul class="nav justify-content-end">
+              <li class="nav-item btn"><%= link_to "投稿一覧", admin_posts_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn"><%= link_to "会員一覧", admin_users_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn"><%= link_to "ブランド作成", admin_brands_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn"><%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+            </ul>
+          <% elsif user_signed_in? %>
+            <%= link_to root_path do %>
+              <%= image_tag "images.jpg", size: "200x76" %>
+            <% end %>
+            <ul class="nav justify-content-end">
+              <li class="nav-item btn"><%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn"><%= link_to "いいね一覧", favorites_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn"><%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn"><%= link_to "投稿", new_post_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn"><%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+            </ul>
+          <% else %>
+            <%= link_to root_path do %>
+              <%= image_tag "images.jpeg", size: "200x76" %>
+            <% end %>
+            <ul class="nav justify-content-end">
+              <li class="nav-item btn"><%= link_to "ゲストログイン", root_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn"><%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %></li>
+            </ul>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:alert] %>
+      <p><%= flash[:alert] %></p>
+    <% end %>
+    <%= yield %>
+    <footer class="text-dark pt-5 pb-3">
+      <div class='container'>
+  	    <div class='row'>
+    	    <div class='mx-auto'>
+              <a href="#" class="mx-1 text-dark"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="mx-5 text-dark"><i class="fab fa-instagram fa-lg"></i></a>
+              <a href="#" class="mx-1 text-dark"><i class="fab fa-facebook-square"></i></a>
+              <a href="#" class="mx-5 text-dark"><i class="far fa-envelope fa-lg"></i></a>
+              <p class="text-center">スニーカー</p>
+            </div>
          </div>
-      </footer>
-      
+       </div>
+    </footer>
   </body>
 </html>

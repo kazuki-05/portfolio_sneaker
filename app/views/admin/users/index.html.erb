@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-xs-offset-1">
+      <h2>会員一覧</h2>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th></th>
+            <!--<th>ステータス</th>-->
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <!--each文→複数のものを取り出す。doで右側に一番を格納する。||=customer.find1番-->
+            <tr>
+              <td><%= user.id %></td>
+              <!--画像と文字link to do -->
+              <td><%= user.name %></td>
+              <!--ブロック変数は@がいらない-->
+              <td><%= user.email %></td>
+              <!--<td>-->
+              <!--  <%# if user.is_deleted? == true %>-->
+              <!--    <td class="text-danger text-center">退会</td>-->
+  		          <!--<%# else %>-->
+  		          <!--  <td class="text-success text-center">有効</td>-->
+  		          <!--<%# end %>-->
+              <!--</td>-->
+            </tr>
+          <% end %>
+            <!--each~endまで来たら繰り返し。２番以降からデータがなくなるまで繰り返す。-->
+        </tbody>
+      </table>
+       <!--paginate @customers %>-->
+    </div>
+  </div>
+</div>

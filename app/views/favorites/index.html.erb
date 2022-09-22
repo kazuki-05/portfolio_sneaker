@@ -1,0 +1,17 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+<% @favorites.each do |favorite| %>
+    <p><%= image_tag favorite.post.user.get_profile_image(100,100) %></p>
+
+    <p><%= image_tag favorite.post.image, size:"300x300" %></p>
+
+    <p>ブランド名: <%= favorite.post.brand.name %></p>
+
+    <%= link_to post_path(favorite.post.id) do %>
+      <P>・ <%= favorite.post.title %></P>
+    <% end %>
+
+<p><%= favorite.post.body %></p>
+<% end %>
