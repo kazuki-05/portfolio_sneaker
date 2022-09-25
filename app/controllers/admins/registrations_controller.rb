@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Admins::RegistrationsController < Devise::
-  
+class Admins::RegistrationsController < Devise::RegistrationsController
+
   # ゲストログイン機能
   # ゲストユーザーを削除できないようにする
   before_action :ensure_normal_user, only: :destroy
