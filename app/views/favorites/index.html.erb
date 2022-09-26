@@ -1,17 +1,57 @@
-<div class='container'>
-  <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+<div class="card-list-container py-5">
+  <!--コントローラから渡された@post_images変数内から1つずつ取り出して、post_image変数へ格納-->
+  <% @favorites.each do |favorite| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
 
-<% @favorites.each do |favorite| %>
-    <p><%= image_tag favorite.post.user.get_profile_image(100,100) %></p>
+    <!--画像上部-->
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2">
+          <!--image_tagを使いpostにActiveStorageで設定したimageを表示-->
+    <!--post_image.get_imageの部分はPostモデル内に記述したメソッドを呼び出し-->
+    <!--<#%= image_tag post.get_image, size:"300x300" %>-->
+          <%= image_tag favorite.post.user.get_profile_image(75,75), class:"mt-3 rounded-circle"; %>
+        </div>
+        <div class="col-10">
+          <p class="card-title">
+            <%#= link_to(post_image_path(post_image.id), class:"text-dark") do %>
+              <p><strong><i class="fa-solid fa-user-secret"></i><span> <%= favorite.post.user.name %></span></strong></P>
+            <%# end %>
+          </p>
+        </div>
+      </div>
+    </div>
 
-    <p><%= image_tag favorite.post.image, size:"300x300" %></p>
+    <!--画像部分-->
+    <%#= link_to post_image_path(post_image.id) do %>
+      <%= image_tag favorite.post.image, class:"card-img-top" %>
+    <%# end %>
 
-    <p>ブランド名: <%= favorite.post.brand.name %></p>
+    <!--画像下部-->
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-10">
+          <p class="card-title">
+            <%#= link_to(post_image_path(post_image.id), class:"text-dark") do %>
+              <strong><span>ブランド名: <%= favorite.post.brand.name %></span></strong>
+            <%# end %>
+          </p>
+          <%= link_to post_path(favorite.post.id) do %>
+            <P class="card-text">題名 :<%= favorite.post.title %></P>
+          <% end %>
 
-    <%= link_to post_path(favorite.post.id) do %>
-      <P>・ <%= favorite.post.title %></P>
-    <% end %>
+           <p class="card-text">説明：<%= favorite.post.body %></p>
+           <!--いいね機能-->
+           <span><%= render 'posts/favorite', post: favorite.post, class:"text-dark" %></span>
+           <span><%= link_to "#{favorite.post.post_comments.count} コメント", post_path(favorite.post.id), class:"text-dark" %></span>
+        </div>
+      </div>
+    </div>
 
-<p><%= favorite.post.body %></p>
-<% end %>
+
+  </div>
+  <% end %>
+  <%#= paginate post_images %>
+</div>

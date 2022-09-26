@@ -1,7 +1,24 @@
-<% @post_comments.each do |post_comment| %>
-  <div>
-    <p><%= post_comment.comment %></p>
-    <%= link_to '削除', admin_post_comment_path(post_comment.id), method: :delete %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>コメント</th>
+            <th>削除</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @post_comments.each do |post_comment| %>
+        <tr>
+          <td><%= post_comment.comment %></td>
+          <td><%= link_to '削除', admin_post_comment_path(post_comment.id), method: :delete %></td>
+        </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
   </div>
-<% end %>
+</div>
 

@@ -24,6 +24,7 @@
               <li class="nav-item btn"><%= link_to "投稿一覧", admin_posts_path, class: 'nav-link text-dark' %></li>
               <li class="nav-item btn"><%= link_to "会員一覧", admin_users_path, class: 'nav-link text-dark' %></li>
               <li class="nav-item btn"><%= link_to "ブランド作成", admin_brands_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn"><%= link_to "コメント一覧", admin_post_comments_path, class: 'nav-link text-dark' %></li>
               <li class="nav-item btn"><%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
             </ul>
           <% elsif user_signed_in? %>
@@ -31,6 +32,7 @@
               <%= image_tag "images.jpg", size: "200x76" %>
             <% end %>
             <ul class="nav justify-content-end">
+              <!--<li class="nav-item btn"><%#= render "search/search", q: @q, class: 'nav-link text-dark' %></li>-->
               <li class="nav-item btn"><%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %></li>
               <li class="nav-item btn"><%= link_to "いいね一覧", favorites_path, class: 'nav-link text-dark' %></li>
               <li class="nav-item btn"><%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %></li>
@@ -58,17 +60,26 @@
     <% end %>
     <%= yield %>
     <footer class="text-dark pt-5 pb-3">
-      <div class='container'>
-  	    <div class='row'>
-    	    <div class='mx-auto'>
-              <a href="#" class="mx-1 text-dark"><i class="fab fa-twitter fa-lg"></i></a>
-              <a href="#" class="mx-5 text-dark"><i class="fab fa-instagram fa-lg"></i></a>
-              <a href="#" class="mx-1 text-dark"><i class="fab fa-facebook-square"></i></a>
-              <a href="#" class="mx-5 text-dark"><i class="far fa-envelope fa-lg"></i></a>
-              <p class="text-center">スニーカー</p>
+      <div style="background-color: #ffdab9;">
+        <div class='container'>
+  	      <div class='row'>
+    	      <div class='mx-auto'>
+              <p class="text-center">@sneakerbooks</p>
+              <i class="fas fa-shoe-prints"></i>
+              <i class="fas fa-shoe-prints"></i>
+              <i class="fas fa-shoe-prints"></i>
+              <i class="fas fa-shoe-prints"></i>
+              <i class="fas fa-shoe-prints"></i>
+              <i class="fas fa-shoe-prints"></i>
+              <i class="fas fa-shoe-prints"></i>
+              <i class="fas fa-shoe-prints"></i>
+              <i class="fas fa-shoe-prints"></i>
+              <i class="fas fa-shoe-prints"></i>
+              <i class="fas fa-shoe-prints"></i>
             </div>
+           </div>
          </div>
-       </div>
+      </div>
     </footer>
   </body>
 </html>

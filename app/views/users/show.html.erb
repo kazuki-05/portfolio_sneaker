@@ -3,42 +3,58 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
 
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <p><%= link_to "プロフィール編集", edit_user_path %></p>
 
-  
+
+        <h3><%= @user.name %></h3>
+        <%= image_tag @user.get_profile_image(100,100) %>
+        <p><%= link_to "プロフィール編集", edit_user_path %></p>
+
+
+    </div>
+  </div>
 </div>
 
+<div class="card-list-container py-5">
+  <!--コントローラから渡された@post_images変数内から1つずつ取り出して、post_image変数へ格納-->
+  <% @post.each do |post| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
 
-<% @post.each do |post| %>
+    <!--画像上部-->
 
-<div>
-  <!--image_tagを使いpostにActiveStorageで設定したimageを表示-->
-  <!--post_image.get_imageの部分はPostモデル内に記述したメソッドを呼び出し-->
-  <!--<#%= image_tag post.get_image, size:"300x300" %>-->
-  <p><%= image_tag post.image, size:"300x300" %></p>
+    <!--画像部分-->
+    <%#= link_to post_image_path(post_image.id) do %>
+      <%= image_tag post.image, class:"card-img-top" %>
+    <%# end %>
 
-  <p>ブランド名: <%= post.brand.name %></p>
+    <!--画像下部-->
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-10">
+          <p class="card-title">
+            <%#= link_to(post_image_path(post_image.id), class:"text-dark") do %>
+              <strong><span>ブランド名: <%=post.brand.name %></span></strong>
+            <%# end %>
+          </p>
+          <%= link_to post_path(post.id) do %>
+            <P class="card-text">題名 :<%= post.title %></P><% end %>
+           <p class="card-text">説明：<%= post.body %></p>
+           <p class="card-text">投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+           <!--いいね機能の部分テンプレートを作って、非同期-->
+           <span><%= render 'posts/favorite', post: post, class:"text-dark" %></span>
+           <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
+           <p><%= link_to "編集", edit_post_path(post.id), class:"btn btn-primary" %>
+           <div class="form-group">
+             <%= link_to "削除", post_path(post.id), method: :delete, class:"btn btn-secondary" , "data-confirm" => "本当に削除しますか？" %>
+           </div>
+           </p>
+        </div>
+      </div>
+    </div>
 
-  <P>・ <%= post.title %></P>
 
-  <p><%= post.body %></p>
-
-  <p>ユーザーネーム：<%= post.user.name %></p>
-
-  <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
-
-  <!--投稿者＝現在ログインしているユーザーだったら削除できる-->
-  <% if post.user == current_user %>
-  <%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  </div>
   <% end %>
-  
-  <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-  
-  <p><%= link_to "編集", edit_post_path(post.id) %></p>
-
+  <%#= paginate post_images %>
 </div>
-
-<% end %>
