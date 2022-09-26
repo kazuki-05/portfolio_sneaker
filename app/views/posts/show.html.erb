@@ -39,9 +39,9 @@
            <p class="card-text">投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
            <!--いいね機能の部分テンプレートを作って、非同期-->
            <spam><%#= render 'favorite', post: post, class:"text-dark" %></span>
-           <p><%= link_to "編集", edit_post_path(@post.id) %>
+           <p><%= link_to "編集", edit_post_path(@post.id), class:"btn btn-primary" %>
              <% if @post.user == current_user %>
-               <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+               <%= link_to "削除", post_path(@post.id), method: :delete, class:"btn btn-secondary", "data-confirm" => "本当に削除しますか？" %>
              <% end %>
            </p>
            <span><%= render 'favorite', post: @post, class:"text-dark" %></span>
@@ -64,13 +64,13 @@
           <!--何日投稿よりも何分何時間前の投稿のように投稿してからの時間表記にする-->
           <br><%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %></br>
           <% if post_comment.user == current_user %>
-            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-secondary" %>
           <% end %>
         <% end %>
         <div>
           <%= form_with model: [@post, @post_comment] do |f| %>
             <%= f.text_area :comment, rows: '5', placeholder: "メッセージ" %>
-            <%= f.submit "送信する" %>
+            <br><%= f.submit "送信する" %></br>
           <% end %>
         </div>
       </div>
