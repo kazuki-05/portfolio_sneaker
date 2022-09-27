@@ -8,20 +8,19 @@
     <!--image_tagを使いpostにActiveStorageで設定したimageを表示-->
     <!--post_image.get_imageの部分はPostモデル内に記述したメソッドを呼び出し-->
     <!--<#%= image_tag post.get_image, size:"300x300" %>-->
-    <p><%= image_tag post.user.get_profile_image(100,100) %></p>
+    <p><%= image_tag post.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %></p>
 
     <p><%= image_tag post.image, size:"150x150" %></p>
 
     <p>ブランド名: <%=post.brand.name %></p>
 
-    <%= link_to post_path(post.id) do %>
-      <P>・ <%= post.title %></P>
-    <% end %>
+    <P>題名：<%= post.title %></P>
+    
 
-    <p><%= post.body %></p>
-    
+    <p>説明：<%= post.body %></p>
+
     <P><%= link_to '削除', admin_post_path(post.id), method: :delete %></P>
-    
+
   </div>
 <% end %>
       </div>

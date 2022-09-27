@@ -1,5 +1,5 @@
 <div class="card-list-container py-5">
-  
+
   <div class="card w-50 mx-auto mt-4 shadow-lg">
 
     <!--画像上部-->
@@ -11,7 +11,7 @@
         <div class="col-10">
           <p class="card-title">
             <%#= link_to(post_image_path(post_image.id), class:"text-dark") do %>
-              <p><strong><i class="fa-solid fa-user-secret"></i><span> <%= @post.user.name %></span></strong></P>
+              <p><strong><i class="fas fa-user-secret"></i><span> <%= @post.user.nickname %></span></strong></P>
             <%# end %>
           </p>
         </div>
@@ -34,16 +34,15 @@
             <%# end %>
           </p>
           <%= link_to post_path(@post.id) do %>
-            <P class="card-text">題名 :<%= @post.title %></P><% end %>
+            <span class="card-text">題名 :<%= @post.title %></span><% end %>
            <p class="card-text">説明：<%= @post.body %></p>
-           <p class="card-text">投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-           <!--いいね機能の部分テンプレートを作って、非同期-->
-           <spam><%#= render 'favorite', post: post, class:"text-dark" %></span>
-           <p><%= link_to "編集", edit_post_path(@post.id), class:"btn btn-primary" %>
+           <span class="card-text">投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></span>
+           
              <% if @post.user == current_user %>
+               <p><%= link_to "編集", edit_post_path(@post.id), class:"btn btn-primary" %>
                <%= link_to "削除", post_path(@post.id), method: :delete, class:"btn btn-secondary", "data-confirm" => "本当に削除しますか？" %>
              <% end %>
-           </p>
+               </p>
            <span><%= render 'favorite', post: @post, class:"text-dark" %></span>
            <div>
               <p>コメント件数：<%= @post.post_comments.count %></p>
@@ -51,7 +50,7 @@
         </div>
       </div>
     </div>
-    
+
 
 
   </div>
@@ -59,10 +58,9 @@
     <div class='row'>
       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
         <% @post.post_comments.each do |post_comment| %>
-          <br><%= image_tag post_comment.user.get_profile_image(100,100) %></br>
-          <%= post_comment.user.name %>
-          <!--何日投稿よりも何分何時間前の投稿のように投稿してからの時間表記にする-->
-          <br><%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %></br>
+          <br><%= image_tag post_comment.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %></br>
+          <p><%= post_comment.user.nickname %></p>
+          <br><%= post_comment.created_at.strftime('%Y/%m/%d') %></br><%= post_comment.comment %>
           <br><% if post_comment.user == current_user %>
             <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-secondary" %>
           <% end %>
