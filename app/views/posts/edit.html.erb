@@ -19,7 +19,7 @@
 <%= f.file_field :image, accept: "image/*" %>
 
 <h4>ブランド名</h4>
-<%= f.text_field :brand.name %>
+<%= f.select :brand_id, Brand.all.map {|brand|[brand.name, brand.id]}, {}, {} %>
 
 <h4>題名</h4>
 <%= f.text_field :title %>

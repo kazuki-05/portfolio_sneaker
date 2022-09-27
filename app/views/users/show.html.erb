@@ -1,18 +1,16 @@
-<div class='container'>
-  <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-
-
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <div class="form-body p-2">
 
         <h2><%= @user.name %></h2>
-        <%= image_tag @user.get_profile_image(100,100) %>
-        <p><%= link_to "プロフィール編集", edit_user_path, class:"btn btn-primary" %></p>
+        <br><%= image_tag @user.get_profile_image(300,300) %></br>
+        <br><%= link_to "プロフィール編集", edit_user_path, class:"btn btn-primary" %></br>
 
-
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
 <div class="card-list-container py-5">
   <!--コントローラから渡された@post_images変数内から1つずつ取り出して、post_image変数へ格納-->
