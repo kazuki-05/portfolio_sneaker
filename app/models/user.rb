@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  #ニックネームカラムのバリデーション
+  validates :nickname, presence: true
   # ポストとの１対多の紐付けとユーザーが消えたら投稿も消えるようにする
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
