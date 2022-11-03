@@ -15,6 +15,7 @@ class Post < ApplicationRecord
   belongs_to :brand
   has_many :post_comments, dependent: :destroy
   has_many :favorites,dependent: :destroy
+  
   # このメソッドの内容は、画像が設置されていない場合はapp/assets/imagesに格納されてるno_image.jpgの画像を表示
   def get_image
     unless image.attached? # 画像、ファイルがあるかどうか
